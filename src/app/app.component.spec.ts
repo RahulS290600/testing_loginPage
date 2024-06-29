@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './pages/login/login.component'; // Import the LoginComponent
+import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [AppComponent, LoginComponent], // Add LoginComponent to imports
     }).compileComponents();
   });
 
@@ -20,10 +22,9 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('login_test');
   });
 
-  it('should render title', () => {
+  it('should contain the LoginComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, login_test');
+    const loginComponent = fixture.debugElement.query(By.directive(LoginComponent));
+    expect(loginComponent).not.toBeNull();
   });
 });

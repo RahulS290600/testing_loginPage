@@ -1,0 +1,33 @@
+<div class="formBody ">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+            <h1>Login</h1>
+            <hr>
+            <div>
+                <label for="email"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" formControlName="username" minlength="5" required>
+                <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+                    <div class="text-danger" *ngIf="loginForm.get('username')?.errors?.['required']">Username is required.</div>
+                    <div class="text-danger" *ngIf="loginForm.get('username')?.errors?.['minlength']">Minimum legth is 5
+                    </div>
+                </div>
+            </div>
+
+
+            <div>
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" formControlName="password" required>
+                <div class="text-danger"
+                    *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                    <div class="text-danger" *ngIf="loginForm.get('password')?.errors?.['required']">Username is
+                        required.</div>
+                </div>
+
+
+                <div class="clearfix">
+                    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
